@@ -105,8 +105,8 @@ public class CefBrowserFrame extends JFrame {
         addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
-                CefApp.getInstance().dispose();
                 dispose();
+                CefApp.getInstance().dispose();
             }
         });
         setLocationRelativeTo(null);
