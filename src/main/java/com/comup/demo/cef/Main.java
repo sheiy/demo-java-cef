@@ -10,7 +10,17 @@ package com.comup.demo.cef;/*
  * Version : V1.0
  */
 
+import com.qcloud.cos.COSClient;
+import com.qcloud.cos.ClientConfig;
+import com.qcloud.cos.request.UploadFileRequest;
+import com.qcloud.cos.sign.Credentials;
 import org.cef.OS;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
 
 /**
  * <一句话功能简介><br>
@@ -23,8 +33,31 @@ import org.cef.OS;
  * @since [产品/模块]
  */
 public class Main {
-    public static void main(String[] args) {
-        String startURL = "http://www.baidu.com/";
-        new CefBrowserFrame(args, startURL, OS.isLinux(), false).setVisible(true);
+
+    private static int APP_ID = 1253953328;
+    private static String SECRET_ID = "AKIDoW4QcbT0PcecUBeSAg083pOkurtmIhaI";
+    private static String SECRET_KEY = "jGbkhJp8JI4e4ISgvhDkIjy1vd8QXR4l";
+    private static String BUCKET_NAME = "test";
+
+    public static void main(String[] args) throws IOException {
+//        ClientConfig clientConfig = new ClientConfig();
+//        clientConfig.setRegion("cq");
+//        Credentials cred = new Credentials(APP_ID, SECRET_ID, SECRET_KEY);
+//        COSClient cosClient = new COSClient(clientConfig, cred);
+//        File file = new File("f:\\1.xml");
+//        FileInputStream fileInputStream = new FileInputStream(file);
+//        byte[] bytes = new byte[fileInputStream.available()];
+//        fileInputStream.read(bytes,0,fileInputStream.available());
+//
+//        UploadFileRequest uploadFileRequest = new UploadFileRequest(BUCKET_NAME, "/test.jpg", bytes );
+//        uploadFileRequest.setEnableShaDigest(false);
+//        String uploadFileRet = cosClient.uploadFile(uploadFileRequest);
+//        System.out.println("upload file ret:" + uploadFileRet);
+        try{
+            String startURL = "http://www.baidu.com/";
+            new CefBrowserFrame(args, startURL, OS.isLinux(), false).setVisible(true);
+        }catch (Throwable e){
+            e.printStackTrace();
+        }
     }
 }

@@ -11,6 +11,7 @@ import org.cef.handler.CefAppHandlerAdapter;
 import org.cef.handler.CefContextMenuHandlerAdapter;
 import org.cef.handler.CefLifeSpanHandlerAdapter;
 
+import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -21,8 +22,8 @@ import java.awt.event.WindowEvent;
  * Created by Comup on 2017/7/12.
  * Cef浏览器Frame
  */
-public class CefBrowserFrame extends Frame {
-    private final TextField address;
+public class CefBrowserFrame extends JFrame {
+    private final JTextField address;
     private final CefApp cefApp;
     private final CefClient cefClient;
     private final CefBrowser browser;
@@ -57,22 +58,23 @@ public class CefBrowserFrame extends Frame {
             @Override
             public void onBeforeContextMenu(CefBrowser browser, CefContextMenuParams params, CefMenuModel model) {
                 model.clear();
-                model.addItem(1, "开发者选项");
+                //model.addItem(1, "开发者选项");
             }
 
             @Override
             public boolean onContextMenuCommand(CefBrowser browser, CefContextMenuParams params, int commandId, int eventFlags) {
-                switch (commandId) {
-                    case 1:
-                        Component debuggerComponent = browser.getDevTools().getUIComponent();
-                        Frame debuggerFrame = new Frame();
-                        debuggerFrame.add(debuggerComponent);
-                        debuggerFrame.setSize(800, 600);
-                        debuggerFrame.setVisible(true);
-                        return true;
-                    default:
-                        return false;
-                }
+//                switch (commandId) {
+//                    case 1:
+//                        Component debuggerComponent = browser.getDevTools().getUIComponent();
+//                        Frame debuggerFrame = new Frame();
+//                        debuggerFrame.add(debuggerComponent);
+//                        debuggerFrame.setSize(800, 600);
+//                        debuggerFrame.setVisible(true);
+//                        return true;
+//                    default:
+//                        return false;
+//                }
+                return false;
             }
         });
 
@@ -88,7 +90,7 @@ public class CefBrowserFrame extends Frame {
         });
 
         browser = cefClient.createBrowser(initString, useOsr, isTransparent);
-        address = new TextField(initString, 100);
+        address = new JTextField(initString, 100);
         address.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 browser.loadURL(address.getText());
